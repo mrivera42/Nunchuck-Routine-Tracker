@@ -12,6 +12,7 @@ struct Nunchuck_Routine_TrackerApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(.dark)
         }
     }
 }
