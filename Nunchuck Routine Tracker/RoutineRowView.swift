@@ -30,8 +30,8 @@ struct RoutineRowView: View {
             // Header with name and accuracy
             HStack(alignment: .top, spacing: 12) {
                 Text(routine.name)
-                    .font(.title2)
-                    .fontWeight(.bold)
+                    .font(.system(.title2, design: .monospaced, weight: .bold))
+                    .foregroundColor(.blue)
                     .lineLimit(2)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
@@ -43,8 +43,8 @@ struct RoutineRowView: View {
                                     .font(.system(size: 11, weight: .bold))
                                     .foregroundStyle(.green)
                                 Text("\(successCount)")
-                                    .font(.title3.bold())
-                                    .foregroundStyle(.white)
+                                    .font(.system(.title3, design: .monospaced, weight: .bold))
+                                    .foregroundStyle(.blue)
                                     .monospacedDigit()
                             }
                             
@@ -53,15 +53,15 @@ struct RoutineRowView: View {
                                     .font(.system(size: 11, weight: .bold))
                                     .foregroundStyle(.red)
                                 Text("\(missCount)")
-                                    .font(.title3.bold())
-                                    .foregroundStyle(.white)
+                                    .font(.system(.title3, design: .monospaced, weight: .bold))
+                                    .foregroundStyle(.blue)
                                     .monospacedDigit()
                             }
                         }
                     }
                     Text("\(accuracy)%")
-                        .font(.title3.bold())
-                        .foregroundColor(.white)
+                        .font(.system(.title3, design: .monospaced, weight: .bold))
+                        .foregroundColor(.blue)
                         .monospacedDigit()
                 }
                 .fixedSize()
@@ -72,8 +72,8 @@ struct RoutineRowView: View {
                 HStack(spacing: 6) {
                     if routine.attempts.isEmpty {
                         Text("READY TO ROLL")
-                            .font(.system(size: 10, weight: .black))
-                            .foregroundColor(.secondary.opacity(0.3))
+                            .font(.system(size: 10, weight: .black, design: .monospaced))
+                            .foregroundColor(.blue.opacity(0.3))
                     } else {
                         ForEach(Array(routine.attempts.suffix(20).enumerated()), id: \.offset) { _, attempt in
                             Image(systemName: attempt.isSuccess ? "checkmark" : "xmark")
@@ -91,11 +91,11 @@ struct RoutineRowView: View {
                     onSuccess()
                 } label: {
                     Label("Success", systemImage: "checkmark")
-                        .font(.body.bold())
+                        .font(.system(.body, design: .monospaced, weight: .bold))
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 8)
-                        .background(Color.yellow)
-                        .foregroundColor(.black)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
                         .cornerRadius(10)
                 }
                 .buttonStyle(.plain)
@@ -104,11 +104,11 @@ struct RoutineRowView: View {
                     onFailure()
                 } label: {
                     Label("Miss", systemImage: "xmark")
-                        .font(.body.bold())
+                        .font(.system(.body, design: .monospaced, weight: .bold))
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 8)
-                        .background(Color.gray)
-                        .foregroundColor(.white)
+                        .background(Color.gray.opacity(0.3))
+                        .foregroundColor(.blue)
                         .cornerRadius(10)
                 }
                 .buttonStyle(.plain)
@@ -117,10 +117,10 @@ struct RoutineRowView: View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 20)
-                .fill(Color(uiColor: .secondarySystemGroupedBackground))
-                .stroke(Color(uiColor: .separator).opacity(0.3), lineWidth: 1)
+                .fill(Color.white)
+                .stroke(Color.blue.opacity(0.2), lineWidth: 1)
         )
-        .shadow(color: .black.opacity(0.1), radius: 8, x: 0, y: 4)
+        .shadow(color: .blue.opacity(0.1), radius: 8, x: 0, y: 4)
     }
 }
 
@@ -145,6 +145,6 @@ struct RoutineRowView: View {
         onFailure: {}
     )
     .padding()
-    .background(Color(uiColor: .systemGroupedBackground))
-    .preferredColorScheme(.dark)
+    .background(Color(red: 0.95, green: 0.95, blue: 0.97))
+    .preferredColorScheme(.light)
 }
